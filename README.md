@@ -1,67 +1,108 @@
 # 🔵 Dots - A Sidescroller Jumping Game
 
-A fun and challenging sidescroller game where you control a blue dot that must jump over incoming enemy dots. Built with Godot 4.3 and C#.
+A fun and challenging sidescroller game where you control a blue dot that must jump over incoming enemy dots. Built with Godot 4.3 and C#, featuring a beautiful procedurally-generated night sky with twinkling stars and a detailed moon.
+
+![Version](https://img.shields.io/badge/version-1.1.0-blue)
+![Godot](https://img.shields.io/badge/Godot-4.3-brightgreen)
+![.NET](https://img.shields.io/badge/.NET-9.0-purple)
+![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20Windows%20%7C%20Linux-lightgrey)
+
+## ✨ What's New in v1.1.0
+
+- 🎯 **macOS Compatibility** - Full support for Apple Silicon Macs
+- 🚀 **.NET 9.0 Support** - Updated to latest .NET runtime for better performance
+- 📦 **Easy Launch Script** - One-click game launch with `launch_godot.sh`
+- 🔧 **Auto-configuration** - Improved project setup with automatic environment detection
 
 ## 🎮 Game Features
 
-- **Simple Controls** - Move and jump to avoid enemies
-- **Progressive Difficulty** - Game speeds up as your score increases
-- **Beautiful Night Sky** - Twinkling stars and moon create an atmospheric background
-- **Score System** - Track your progress and challenge yourself to beat your high score
-- **Instant Restart** - Quick retry when you get hit
+- **🕹️ Simple Controls** - Intuitive movement and jumping mechanics
+- **📈 Progressive Difficulty** - Game speeds up every 5 points for increasing challenge
+- **🌌 Beautiful Night Sky** - Procedurally-generated stars with twinkling animations
+- **🌙 Detailed Moon** - Realistic moon with craters in the night sky
+- **📊 Score System** - Real-time score tracking with high score challenges
+- **♻️ Instant Restart** - Quick retry with R key when game over
+- **⚡ Smooth Performance** - Optimized for 60 FPS gameplay
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
 - **Godot 4.3 or later** with C#/.NET support
-- **.NET 8.0 SDK** or later
-- **Visual Studio Code** or **Visual Studio** (optional, for C# development)
+- **.NET 9.0 SDK** (or .NET 8.0 with compatibility mode)
+- **macOS**, **Windows**, or **Linux** operating system
 
-### Installation
+### Quick Start (macOS)
 
-1. **Download Godot Engine**
-   - Visit [godotengine.org](https://godotengine.org/download)
-   - Download **Godot 4.3 - .NET version** (includes C# support)
-   - Extract and run Godot
+```bash
+# Clone the repository
+git clone https://github.com/Tortured-Metaphor/Dots.git
+cd Dots
 
-2. **Clone or Download this Repository**
+# Install dependencies (if not already installed)
+brew install dotnet
+
+# Launch the game with the provided script
+./launch_godot.sh
+```
+
+Then in Godot, press **F5** or click **Play** to start the game!
+
+### Manual Installation
+
+1. **Install Prerequisites**
+   ```bash
+   # macOS (using Homebrew)
+   brew install dotnet
+   brew install --cask godot-mono
+   
+   # Windows (using Chocolatey)
+   choco install dotnet-sdk
+   choco install godot-mono
+   
+   # Linux (Ubuntu/Debian)
+   sudo apt-get install dotnet-sdk-9.0
+   # Download Godot Mono from godotengine.org
+   ```
+
+2. **Clone the Repository**
    ```bash
    git clone https://github.com/Tortured-Metaphor/Dots.git
    cd Dots
    ```
 
-3. **Open the Project in Godot**
-   - Launch Godot
-   - Click "Import" on the project manager
-   - Navigate to the Dots folder
-   - Select `project.godot` and click "Import & Edit"
-
-4. **Build the C# Solution**
-   - Godot will automatically detect the C# project
-   - Click "Build" in the top menu or press `Ctrl+Shift+B` (Windows/Linux) or `Cmd+Shift+B` (Mac)
-   - Wait for the build to complete
-
-5. **Run the Game**
-   - Press `F5` or click the "Play" button (▶️) in the top-right corner
-   - The game will compile and launch
+3. **Build and Run**
+   ```bash
+   # Build the project
+   dotnet build
+   
+   # Launch with script (macOS/Linux)
+   ./launch_godot.sh
+   
+   # Or open manually in Godot
+   # Import project.godot and press F5
+   ```
 
 ## 🎯 How to Play
 
-### Controls
-- **A / ←** - Move left
-- **D / →** - Move right  
-- **Space / W** - Jump
-- **R** - Restart (when game over)
+### 🎮 Controls
+| Action | Keys |
+|--------|------|
+| **Move Left** | `A` or `←` |
+| **Move Right** | `D` or `→` |
+| **Jump** | `Space` or `W` |
+| **Restart** | `R` (after game over) |
 
-### Objective
-Jump over the red enemy dots that approach from the right side of the screen. Each enemy that spawns increases your score. The game gets progressively harder as enemies spawn more frequently.
+### 🎯 Objective
+Your mission is simple but challenging: **survive as long as possible!** Jump over the red enemy dots that approach from the right side of the screen. Each enemy that passes increases your score. How high can you go?
 
-### Tips
-- Time your jumps carefully - you can't double jump!
-- The spawn rate increases every 5 points
-- Stay near the center for more reaction time
-- Watch for patterns in enemy spawning
+### 💡 Pro Tips
+- **Master the Jump** - You can't double jump, so time it perfectly!
+- **Watch the Patterns** - Enemies have subtle spawning patterns you can learn
+- **Stay Centered** - The middle of the screen gives you the most reaction time
+- **Difficulty Spikes** - Every 5 points, the game speeds up significantly
+- **Perfect Jumps** - Jump at the last moment for style points (not scored, but cool!)
+- **Zen Mode** - Watch the stars twinkle while you play for a calming effect
 
 ## 📁 Project Structure
 
@@ -146,18 +187,79 @@ dotnet build
 - Implement parallax background layers
 - Add particle effects for jumping and collisions
 
+## 🎨 Game Mechanics
+
+### Player Physics
+- **Movement Speed**: 300 pixels/second
+- **Jump Velocity**: -400 pixels/second
+- **Gravity**: 980 pixels/second²
+- **Player Size**: 15-pixel radius circle
+
+### Enemy System  
+- **Enemy Speed**: 200 pixels/second (left-moving)
+- **Spawn Rate**: Starts at 2 seconds, decreases by 0.1s every 5 points
+- **Minimum Spawn Time**: 0.5 seconds
+- **Enemy Size**: 12-pixel radius circle
+
+### Visual Features
+- **50 Procedural Stars**: Randomly positioned with twinkling effects
+- **Dynamic Moon**: With realistic crater details
+- **Ground Line**: Vibrant green (RGB: 0.4, 0.8, 0.3)
+- **Night Sky**: Deep blue background (RGB: 0.05, 0.05, 0.15)
+
+## 📊 Version History
+
+### v1.1.0 (Current) - 2025-08-10
+- ✅ macOS Apple Silicon support
+- ✅ .NET 9.0 compatibility
+- ✅ Launch script for easy startup
+- ✅ Improved build configuration
+- ✅ Enhanced README documentation
+
+### v1.0.0 - 2025-08-10
+- 🎮 Initial game release
+- 🎨 Procedural sky generation
+- 🏃 Basic movement and jumping
+- 🎯 Score tracking system
+- 🔄 Game over and restart functionality
+
+## 🏆 High Score Challenge
+
+Can you beat these milestones?
+- 🥉 **Bronze**: 10 points
+- 🥈 **Silver**: 25 points  
+- 🥇 **Gold**: 50 points
+- 💎 **Diamond**: 100 points
+- 🌟 **Legend**: 200+ points
+
+Share your high scores by opening an issue with a screenshot!
+
 ## 📄 License
 
-This project is open source and available for educational purposes.
+This project is open source and available for educational purposes under the MIT License.
 
 ## 🤝 Contributing
 
-Feel free to fork this project and submit pull requests with improvements!
+Contributions are welcome! Feel free to:
+- 🐛 Report bugs
+- 💡 Suggest new features
+- 🔧 Submit pull requests
+- ⭐ Star the repository if you enjoy the game!
 
 ## 📧 Contact
 
-For questions or suggestions, please open an issue on GitHub.
+For questions, suggestions, or just to say hi:
+- Open an [issue on GitHub](https://github.com/Tortured-Metaphor/Dots/issues)
+- Star the repo if you enjoyed the game!
 
 ---
 
+<div align="center">
+
+**Made with ❤️ using Godot 4.3 and C#**
+
 **Enjoy playing Dots!** 🎮✨
+
+*Jump, dodge, survive, repeat!*
+
+</div>
